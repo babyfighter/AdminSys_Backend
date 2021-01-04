@@ -1,0 +1,74 @@
+#端口
+server:
+  port: 8080
+
+spring:
+  #环境配置dev/prod
+  profiles:
+    active: dev
+    # 数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/admin_template?useUnicdoe=true&characterEncoding=utf8
+  # 国际化，basename 指定国际化文件前缀
+  messages:
+    basename: static/i18n/messages
+    encoding: UTF-8
+
+#redis 配置
+  redis:
+    host: 127.0.0.1
+      # 连接端口号
+    port: 6379
+      # 数据库索引（0 - 15）
+    database: 0
+      # 连接超时时间（毫秒）
+    timeout: 10000
+      # lettuce 参数
+    lettuce:
+        pool:
+          # 最大连接数(使用负值表示没有限制) 默认为 8
+          max-active: 10
+          # 最大阻塞等待时间(使用负值表示没有限制) 默认为 -1 ms
+          max-wait: -1
+          # 最大空闲连接 默认为 8
+          max-idle: 5
+          # 最小空闲连接 默认为 0
+          min-idle: 0
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: PST
+  # mail 配置
+  mail:
+    # SMTP 服务器地址
+    host: smtp.gmail.com
+    # 邮件服务器账号
+    username: adamtest20201225@gmail.com
+    # 授权码
+    password: rphkoxodtsgikqrm
+    # 配置端口号（默认使用 25，若项目发布到云服务器，需要开放相应端口 465，需要配置相关 ssl 协议）
+    port: 465
+    # 编码字符集采用 UTF-8
+    default-encoding: UTF-8
+    # 配置 ssl 协议（端口为 25 时，可以不用配置）
+    properties:
+      mail:
+        smtp:
+          port: 465
+          auth: true
+          protocol: smtp
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+
+  # 文件上传大小配置（由于附件的存在，可以视项目情况修改）
+  servlet:
+    multipart:
+      # 限制单个文件大小
+      max-file-size: 10MB
+      # 限制单次请求总文件大小
+      max-request-size: 30MB
